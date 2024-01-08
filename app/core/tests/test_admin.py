@@ -14,7 +14,7 @@ class AdminSiteTests(TestCase):
         """Create User and Client"""
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            email ='admin@example.com',
+            email='admin@example.com',
             password='testpass123',
         )
         self.client.force_login(self.admin_user)
