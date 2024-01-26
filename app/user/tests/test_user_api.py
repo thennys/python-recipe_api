@@ -13,6 +13,7 @@ CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
 ME_URL = reverse('user:me')
 
+
 def create_user(**params):
     """Create and return a new user"""
     return get_user_model().objects.create_user(**params)
@@ -99,7 +100,6 @@ class PublicUserApiTests(TestCase):
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-
     def test_retrieve_user_unauthorized(self):
         """Test authentication is required for users"""
         res = self.client.get(ME_URL)
@@ -126,7 +126,7 @@ class PrivateUserApiTest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, {
             'name': self.user.name,
-            'email': self.useer.email,
+            'email': self.user.email,
         })
 
     def test_post_me_not_allowed(self):
@@ -137,11 +137,11 @@ class PrivateUserApiTest(TestCase):
 
     def test_update_user_profile(self):
         """Test updating the user profile for the authenticated user"""
-        payload = {'name':'updated name', 'password': 'newpassword123'}
+        payload = {'name': 'updated name', 'password': 'newpassword123'}
 
         res = self.client.patch(ME_URL, payload)
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
-        self.assertTrue(self.user.check_password(payload['name']))
+        self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
