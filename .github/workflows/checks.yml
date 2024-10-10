@@ -15,7 +15,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: checkout
         uses: actions/checkout@v2
+
+      # Install Docker Compose
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+      # Run tests
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test"
+      # Lint the code
       - name: Lint  
         run: docker-compose run --rm app sh -c "flake8"
