@@ -8,16 +8,14 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from core.models import (
-    Ingredient,
-    Recipe,
-)
+from core.models import Ingredient
 
 from recipe.serializers import IngredientSerializer
 
+
 INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
-# Create user helper function
+
 def create_user(email='test@example.com', password='testpass123'):
     """Create and return user."""
     return get_user_model().objects.create_user(email=email, password=password)
