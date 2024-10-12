@@ -1,5 +1,6 @@
 FROM python:3.9-alpine3.13
-LABEL maintainer="thennyswhyte.com"
+#LABEL maintainer="thennyswhyte.com"
+LABEL org.opencontainers.image.authors="moby@example.com"
 
 ENV PYTHONUNBUFFERED 1
 
