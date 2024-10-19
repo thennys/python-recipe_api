@@ -341,7 +341,6 @@ class PrivateRecipeApiTests(TestCase):
             ).exists()
             self.assertTrue(exists)
 
-
     def test_filter_by_tags(self):
         """Test filtering recipes by tags."""
         r1 = create_recipe(user=self.user, title='Thai Vegetable Curry')
@@ -381,6 +380,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertIn(s1.data, res.data)
         self.assertIn(s2.data, res.data)
         self.assertNotIn(s3.data, res.data)
+
 
 class ImageUploadTests(TestCase):
     """Tests for the image upload API."""
