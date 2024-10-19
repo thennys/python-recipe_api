@@ -32,10 +32,12 @@ def detail_url(recipe_id):
     """Create  and return recipe detail URL"""
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
+
 # Helper function that generates url to the upload image endpoint
 def image_upload_url(recipe_id):
     """Create and return an image upload URL."""
     return reverse('recipe:recipe-upload-image', args=[recipe_id])
+
 
 def create_recipe(user, **params):
     """Create and return a sample recipe."""
